@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare AI - Your Virtual Health Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <h1>Healthcare AI</h1>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#symptom-checker">Symptom Checker</a></li>
+            <li><a href="#appointment">Appointment</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <header id="home">
+        <h2>Welcome to Healthcare AI</h2>
+        <p>Your trusted online health assistant for checking symptoms and booking appointments.</p>
+    </header>
+
+    <section class="container" id="symptom-checker">
+        <h2>Symptom Checker</h2>
+        <p>Enter your symptom to get a possible diagnosis.</p>
+        <input type="text" id="symptom" placeholder="E.g., fever, headache">
+        <button onclick="checkSymptom()">Check</button>
+        <p id="result"></p>
+    </section>
+
+    <section class="container" id="appointment">
+        <h3>Schedule an Appointment</h3>
+        <p>Enter your name to get a randomly assigned doctor.</p>
+        <input type="text" id="name" placeholder="Your Name">
+        <button onclick="scheduleAppointment()">Schedule</button>
+        <p id="appointment"></p>
+    </section>
+
+    <section class="container" id="contact">
+        <h3>Contact Us</h3>
+        <p>Have questions? Get in touch with us.</p>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Healthcare AI. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        const symptomData = {
+            "fever": "Flu, COVID-19, Viral Infection",
+            "cough": "Cold, COVID-19, Bronchitis",
+            "headache": "Migraine, Stress, Dehydration",
+            "stomach pain": "Indigestion, Food Poisoning, Ulcer"
+        };
+
+        function checkSymptom() {
+            let symptom = document.getElementById("symptom").value.toLowerCase();
+            let result = symptomData[symptom] || "Condition not found. Consult a doctor.";
+            document.getElementById("result").innerText = "Possible conditions: " + result;
+        }
+
+        function scheduleAppointment() {
+            let name = document.getElementById("name").value;
+            if (name.trim() === "") {
+                document.getElementById("appointment").innerText = "Please enter your name.";
+                return;
+            }
+            const doctors = ["Dr. Smith", "Dr. Johnson", "Dr. Patel", "Dr. Lee", "Dr. Garcia"];
+            let doctor = doctors[Math.floor(Math.random() * doctors.length)];
+            document.getElementById("appointment").innerText = `Appointment scheduled with ${doctor} for ${name}.`;
+        }
+    </script>
+</body>
+</html>
+
